@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const key = JSON.parse(process.env.BITTE_KEY || "{}");
-//const config = JSON.parse(process.env.BITTE_CONFIG || "{}");
+const config = JSON.parse(process.env.BITTE_CONFIG || "{}");
 
 if (!key?.accountId) {
     console.error("no account");
@@ -17,7 +17,7 @@ export async function GET() {
         },
         servers: [
             {
-                url: "https://tx-builder-agent.vercel.app/",
+                url: config.url,
             },
         ],
         "x-mb": {
